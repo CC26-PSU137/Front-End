@@ -7,6 +7,7 @@ import {
     Mail,
     Lock,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { Image } from "../data";
 import { NavLink } from "react-router-dom";
@@ -18,6 +19,14 @@ export default function RegisterPage() {
         password: "",
     });
 
+    const navigate = useNavigate();
+
+    const [popup, setPopup] = useState({
+        show: false,
+        type: "",
+        message: "",
+    });
+
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -25,29 +34,114 @@ export default function RegisterPage() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Yey! Akun berhasil dibuat 🌱");
+
+        const users = JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+
+        // CEK EMAIL DUPLIKAT
+        const emailSudahAda = users.find(
+            (user) =>
+                user.email.toLowerCase() ===
+                form.email.toLowerCase()
+        );
+
+        if (emailSudahAda) {
+
+            setPopup({
+                show: true,
+                type: "error",
+                message: "Upss Email ini sudah dipakai!",
+            });
+
+            setTimeout(() => {
+                setPopup({
+                    show: false,
+                    type: "",
+                    message: "",
+                });
+            }, 2500);
+
+            return;
+        }
+
+        try {
+
+            const response = await fetch(
+                "https://backend-solo-cc26-psu137-production.up.railway.app/api/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: form.email,
+                        password: form.password,
+                    }),
+                }
+            );
+
+            const result = await response.json();
+
+            console.log(result);
+
+            // BACKEND ERROR
+            if (result.status === "failed") {
+
+                setPopup({
+                    show: true,
+                    type: "error",
+                    message: "Yahh 😢 Server SOLO lagi tidur",
+                });
+
+                return;
+            }
+
+            // SUCCESS
+            if (result.status === "success") {
+
+                const userBaru = {
+                    nama: form.nama,
+                    email: form.email,
+                };
+
+                users.push(userBaru);
+
+                localStorage.setItem(
+                    "users",
+                    JSON.stringify(users)
+                );
+
+                setPopup({
+                    show: true,
+                    type: "success",
+                    message: "Yey! Akun berhasil dibuat 🎉",
+                });
+
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2000);
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+            setPopup({
+                show: true,
+                type: "error",
+                message: "Server SOLO lagi capek",
+            });
+        }
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-green-200 via-lime-100 to-emerald-200 flex items-center justify-center p-5 overflow-hidden relative">
-
-            {/* Dekorasi Background */}
-            <div className="absolute top-10 left-10 animate-bounce">
-                <Leaf className="text-green-500 w-14 h-14" />
-            </div>
-
-            <div className="absolute bottom-10 right-10 animate-pulse">
-                <Recycle className="text-emerald-500 w-16 h-16" />
-            </div>
-
-            <div className="absolute top-24 right-20 animate-bounce delay-200">
-                <Trees className="text-lime-600 w-16 h-16" />
-            </div>
+        <div className="min-h-screen bg-white flex items-center justify-center p-5 overflow-hidden relative">
 
             {/* Card Register */}
-            <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-[35px] w-full max-w-md p-8 border-4 border-green-300 relative z-10">
+            <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-[35px] w-full max-w-md p-8 border-2 border-green-300 relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-8">
@@ -60,7 +154,7 @@ export default function RegisterPage() {
                     </h1>
 
                     <p className="text-green-600 mt-2 text-sm">
-                        Yuk jadi pahlawan bumi bersama 🌱
+                        Yuk jadi pahlawan bumi bersama <i class="ri-emotion-happy-line"></i>
                     </p>
                 </div>
 
@@ -122,7 +216,7 @@ export default function RegisterPage() {
                                 value={form.password}
                                 onChange={handleChange}
                                 placeholder="Masukkan password"
-                                className="w-full bg-transparent outline-none px-3 py-3 text-gray-700"
+                                className="w-full outline-none px-3 py-3 text-gray-700"
                             />
                         </div>
                     </div>
@@ -130,20 +224,43 @@ export default function RegisterPage() {
                     {/* Button */}
                     <button
                         type="submit"
-                        className="w-full bg-green-500 hover:bg-green-600 active:scale-95 transition-all duration-200 text-white font-bold py-4 rounded-2xl shadow-lg text-lg"
+                        className="w-full bg-green-500 hover:scale-105 cursor-pointer transition-all duration-300 text-white py-3 rounded-2xl shadow-lg"
                     >
-                        Daftar Sekarang 🌿
+                        Daftar Sekarang
                     </button>
                 </form>
 
                 {/* Footer */}
                 <p className="text-center text-sm text-green-700 mt-6">
                     Sudah punya akun?{" "}
-                    <span className="font-bold cursor-pointer">
+                    <span className=" cursor-pointer">
                         <NavLink to={"/login"}>Login</NavLink>
                     </span>
                 </p>
             </div>
+
+            {popup.show && (
+                <div className="fixed top-0  z-50 ">
+
+                    <div
+                        className={`px-6 py-4 rounded-3xl shadow-2xl text-white font-bold text-lg flex items-center gap-3 transition-all duration-500
+                         ${popup.type === "success"
+                                ? "bg-green-500"
+                                : "bg-red-500"
+                            }`}
+                    >
+
+                        {popup.type === "success" ? (
+                            <i className="ri-checkbox-circle-fill text-3xl"></i>
+                        ) : (
+                            <i className="ri-close-circle-fill text-3xl"></i>
+                        )}
+
+                        <p>{popup.message}</p>
+
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

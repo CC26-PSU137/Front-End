@@ -7,30 +7,98 @@ import {
     EyeOff,
 } from "lucide-react";
 
+
 import { Image } from "../data";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Loginpage() {
     const [showPassword, setShowPassword] = useState(false);
 
+
+    const [form, setForm] = useState({
+        email: "",
+        password: "",
+    });
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const response = await fetch(
+                "https://backend-solo-cc26-psu137-production.up.railway.app/api/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: form.email,
+                        password: form.password,
+                    }),
+                }
+            );
+
+            const result = await response.json();
+
+            console.log(result);
+
+            if (result.status === "success") {
+
+                localStorage.setItem(
+                    "token",
+                    result.data.token
+                );
+
+                const users = JSON.parse(
+                    localStorage.getItem("users")
+                ) || [];
+
+                const user = users.find(
+                    (u) => u.email === form.email
+                );
+
+                if (!user) {
+                    alert("User tidak ditemukan");
+                    return;
+                }
+
+                localStorage.setItem(
+                    "currentUser",
+                    JSON.stringify(user)
+                );
+                navigate("/homepage");
+            } else {
+                alert(result.message);
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Terjadi kesalahan");
+        }
+    };
+
+
+
+
+
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-200 via-lime-100 to-emerald-200 overflow-hidden relative p-4">
-
-            {/* Floating Decorations */}
-            <div className="absolute top-10 left-10 animate-bounce">
-                <Leaf className="text-green-500 w-12 h-12" />
-            </div>
-
-            <div className="absolute bottom-10 right-10 animate-pulse">
-                <Recycle className="text-emerald-500 w-14 h-14" />
-            </div>
-
-            <div className="absolute top-20 right-20 animate-bounce delay-200">
-                <Trees className="text-lime-600 w-14 h-14" />
-            </div>
+        <div className="min-h-screen flex items-center justify-center bg-white overflow-hidden relative p-4">
 
             {/* Login Card */}
-            <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-[35px] p-6 mt-20 w-full max-w-md border-4 border-green-300 relative z-10">
+            <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-[35px] p-6  w-full max-w-md border-2 border-green-300 relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-8">
@@ -42,27 +110,30 @@ export default function Loginpage() {
                     />
 
                     <h1 className="text-4xl font-extrabold text-green-700">
-                        Hello Sobat SOLO 🌱
+                        Hello Sobat SOLO
                     </h1>
 
                     <p className="text-green-600 mt-2 text-sm">
-                        Yuk login dan jaga bumi bersama 🌍
+                        Yuk login dan jaga bumi bersama <i class="ri-earth-fill"></i>
                     </p>
                 </div>
 
                 {/* Form */}
-                <form className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
 
                     {/* Username */}
                     <div>
                         <label className="block mb-2 text-green-700 font-semibold">
-                            Username
+                            Email
                         </label>
 
                         <input
-                            type="text"
-                            placeholder="Masukkan username..."
-                            className="w-full px-4 py-3 rounded-2xl border-2 border-green-200 focus:outline-none focus:ring-4 focus:ring-green-200 bg-green-50 text-gray-700"
+                            type="email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            placeholder="Masukkan Email..."
+                            className="w-full px-4 py-3 rounded-2xl border-2 border-green-200 focus:outline-none focus-within:border-green-500 bg-green-50 text-gray-700"
                         />
                     </div>
 
@@ -75,14 +146,17 @@ export default function Loginpage() {
                         <div className="relative">
                             <input
                                 type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={form.password}
+                                onChange={handleChange}
                                 placeholder="Masukkan password..."
-                                className="w-full px-4 py-3 rounded-2xl border-2 border-emerald-200 focus:outline-none focus:ring-4 focus:ring-emerald-200 bg-emerald-50 text-gray-700"
+                                className="w-full px-4 py-3 rounded-2xl border-2 border-emerald-200 focus:outline-none focus-within:border-green-500 bg-emerald-50 text-gray-700"
                             />
 
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-4 top-3 text-emerald-600"
+                                className="absolute cursor-pointer right-4 top-3 text-emerald-600"
                             >
                                 {showPassword ? (
                                     <EyeOff size={22} />
@@ -93,36 +167,26 @@ export default function Loginpage() {
                         </div>
                     </div>
 
-                    {/* Remember */}
-                    <div className="flex items-center gap-2 text-sm text-green-700">
-                        <input type="checkbox" className="accent-green-500" />
-                        <span>Ingat aku 🌿</span>
-                    </div>
-
                     {/* Button */}
                     <button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105 transition-all duration-300 text-white font-bold py-3 rounded-2xl shadow-lg"
+                        className="w-full bg-green-500 hover:scale-105 cursor-pointer transition-all duration-300 text-white py-3 rounded-2xl shadow-lg"
                     >
-                        Login Sekarang 🚀
+                        Login Sekarang
                     </button>
                 </form>
 
                 {/* Footer */}
                 <p className="text-center text-sm text-green-700 mt-6">
                     Belum punya akun?{" "}
-                    <span className="text-emerald-600 font-bold cursor-pointer hover:underline">
+                    <span className="text-emerald-600  cursor-pointer hover:underline">
                         <NavLink to={"/register"}>Registrasi</NavLink>
                     </span>
                 </p>
             </div>
 
             {/* Animation */}
-            <style jsx>{`
-        .slow-spin {
-          animation: spin 6s linear infinite;
-        }
-      `}</style>
+
         </div>
     );
 }

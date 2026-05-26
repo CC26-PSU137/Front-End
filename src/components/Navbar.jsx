@@ -1,48 +1,174 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Image } from "../data";
+
 const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-
   const handleClick = () => {
-    setMenuActive(!menuActive)
-  }
+    setMenuActive(!menuActive);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
+
     window.addEventListener("scroll", onScroll);
+
     return () => window.removeEventListener("scroll", onScroll);
-  })
-
-
-
+  }, []);
 
   return (
     <>
-      <div className={`navbar fixed z-50 w-full bg-white ${scrolled ? "border-b-2 border-stone-900" : ""}`}>
-        <div className="container mx-auto px-2">
-          <div className="navbar-box  flex items-center justify-between py-6">
-            <div className="logo">
-              <h1 className='text-3xl font-bold'>SOLO</h1>
+      <div
+        className={`fixed top-0 left-0 w-full h-auto z-50 transition-all duration-300 ${scrolled
+          ? "bg-white/90 backdrop-blur-lg shadow-xl"
+          : "bg-transparent"
+          }`}
+      >
+        <div className="container mx-auto px-4">
+
+          <div className="flex items-center justify-between py-5">
+
+            {/* LOGO */}
+            <div className="flex items-center gap-3">
+
+              <div className="bg-green-500 w-14 h-14 rounded-full flex items-center justify-center shadow-lg">
+                <i className="ri-recycle-fill text-3xl text-white"></i>
+              </div>
+
+              <div>
+                <h1 className="text-3xl font-heading flex items-center font-black text-green-500">
+                  SOLO
+                </h1>
+                <p className="text-sm font-heading text-gray-500 -mt-1">
+                  Smart Trash AI
+                </p>
+
+              </div>
+              <div className='flex -mt-2 items-center - relative z-10 '>
+                <img
+                  src={Image.SOLO_Fix} // Ganti atau sesuaikan dengan aset gambar laptop/ilustrasi isometrik Qreatif
+                  alt="Qreatif Hero"
+                  className='w-[100px] object-contain'
+                />
+              </div>
             </div>
 
-            <div className={`menu flex gap-10 absolute md:static left-1/2 -translate-x-1/2 md:left-0 md:-translate-x-0 flex-col md:flex-row w-full  text-center  ${menuActive ? "top-16 opacity-100" : "-top-72 opacity-0"} md:w-auto py-10  md:py-0 transition-all md:transition-none bg-white -z-10 md:z-0 md:opacity-100`}>
-              <NavLink to={""}>Beranda</NavLink>
-              <NavLink to={"alamatdetail-event"}>Alamat Detail Bank Sampah</NavLink>
-              <NavLink to={"klasifikasi-event"}>Klasifikasikan</NavLink>
-              <NavLink to={"kuis-event"}>KUIS</NavLink>
+            {/* MENU */}
+            <div
+              className={`
+                absolute md:static
+                left-1/2 md:left-0
+                -translate-x-1/2 md:-translate-x-0
+                w-[90%] md:w-auto
+                flex flex-col md:flex-row
+                items-center
+                gap-5 md:gap-3
+                bg-white md:bg-white/70
+                backdrop-blur-lg
+                rounded-[30px]
+                md:rounded-full
+                shadow-2xl md:shadow-lg
+                px-8 py-8 md:py-3
+                transition-all duration-500
+                ${menuActive
+                  ? "top-24 opacity-100"
+                  : "-top-[500px] opacity-0 md:opacity-100"
+                }
+              `}
+            >
+
+              <NavLink
+                to="/homepage"
+                className={({ isActive }) =>
+                  `px-5 py-3 rounded-full  font-bold transition-all duration-300 ${isActive
+                    ? "bg-green-500 text-white shadow-lg"
+                    : "text-green-500 hover:bg-green-100"
+                  }`
+                }
+              >
+                <i class="ri-home-smile-fill"></i> Home
+              </NavLink>
+
+              <NavLink
+                to="alamatdetail-event"
+                className={({ isActive }) =>
+                  `px-5 py-3 rounded-full font-bold transition-all duration-300 ${isActive
+                    ? "bg-green-500 text-white shadow-lg"
+                    : "text-green-500 hover:bg-green-100"
+                  }`
+                }
+              >
+                <i class="ri-map-pin-5-fill text-&#xEF0D;"></i> Bank Sampah
+              </NavLink>
+
+              <NavLink
+                to="klasifikasi-event"
+                className={({ isActive }) =>
+                  `px-5 py-3 rounded-full font-bold transition-all duration-300 ${isActive
+                    ? "bg-green-500 text-white shadow-lg"
+                    : "text-green-500 hover:bg-green-100"
+                  }`
+                }
+              >
+                <i class="ri-recycle-fill"></i> Klasifikasi
+              </NavLink>
+
+              <NavLink
+                to="kuis-event"
+                className={({ isActive }) =>
+                  `px-5 py-3 rounded-full font-bold transition-all duration-300 ${isActive
+                    ? "bg-green-500 text-white shadow-lg"
+                    : "text-green-500 hover:bg-green-100"
+                  }`
+                }
+              >
+                <i class="ri-game-2-line"></i> KUIS
+              </NavLink>
+
+
+              <NavLink
+                to="profile-event"
+                className={({ isActive }) =>
+                  `px-5 py-3 rounded-full font-bold transition-all duration-300 ${isActive
+                    ? "bg-green-500 text-white shadow-lg"
+                    : "text-green-500 hover:bg-green-100"
+                  }`
+                }
+              >
+                <i class="ri-account-circle-fill"></i> profile
+              </NavLink>
+
+
+
             </div>
 
-            <div className="menu-btn md:hidden block" onClick={handleClick}>
-              <i className="ri-menu-3-line ri-2x "></i>
+            {/* BUTTON MOBILE */}
+            <div
+              className="md:hidden block"
+              onClick={handleClick}
+            >
+
+              <button className="bg-gradient-to-r from-pink-400 to-indigo-400 w-14 h-14 rounded-full shadow-xl flex items-center justify-center active:scale-95 transition-all">
+
+                <i
+                  className={`text-white text-3xl ${menuActive
+                    ? "ri-close-line"
+                    : "ri-menu-3-line"
+                    }`}
+                ></i>
+
+              </button>
+
             </div>
+
           </div>
+
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Navbar;
