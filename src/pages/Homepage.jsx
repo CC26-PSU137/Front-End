@@ -70,23 +70,25 @@ const HomePage = () => {
       );
 
   }, []);
+
+
   return (
-    <div className='homepage  md:pt-20 pt-24 bg-white min-h-screen overflow-hidden font-sans relative'>
+    <div className='homepage md:pt-20 pt-24 bg-white min-h-screen overflow-hidden font-sans relative'>
       {/* POPUP SAPAAN */}
       {showWelcome && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50 ">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50 px-4 ">
 
-          <div className="bg-white rounded-[35px] p-8 shadow-2xl text-center animate-popup-smooth max-w-sm mx-4">
+          <div className="bg-white rounded-[35px] p-5 sm:p-8 shadow-2xl text-center animate-popup-smooth w-full max-w-sm">
 
-            <div className="bg-green-500 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-5">
-              <i className="ri-open-arm-line text-5xl text-white"></i>
+            <div className="bg-green-500 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center mx-auto mb-5">
+              <i className="ri-open-arm-line text-4xl sm:text-5xl text-white"></i>
             </div>
 
-            <h1 className="text-4xl font-black text-indigo-700 mb-3">
+            <h1 className="text-2xl sm:text-4xl font-black text-indigo-700 mb-3 break-words">
               Halo, {user?.nama}!
             </h1>
 
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-sm sm:text-lg">
               Selamat Datang di Website SOLO <i class="ri-chat-smile-3-line"></i>
             </p>
 
@@ -98,11 +100,11 @@ const HomePage = () => {
 
       {/* ================= HERO SECTION ================= */}
 
-      <div className=" container mx-auto px-4 py-36 relative bg-no-repeat bg-contain bg-center">
+      <div className=" container mx-auto px-4 sm:px-6 py-20 sm:py-28 md:py-36 relative bg-no-repeat bg-contain bg-center">
         <div className="hero grid md:grid-cols-2 grid-cols-1 items-center gap-8 reveal">
 
           {/* TEXT CONTENT */}
-          <div className='text-center md:text-left -mt-25 pb-10 mt-1 md:pb-0 z-10'>
+          <div className='text-center md:text-left  pb-10 mt-1  z-10'>
             <h1 className='font-heading xl:text-6xl lg:text-5xl text-4xl font-black text-green-500 mb-4 tracking-wide'>
               Aplikasi Edukasi <br />
               <span className="bg-green-500 bg-clip-text text-transparent ">
@@ -110,11 +112,7 @@ const HomePage = () => {
               </span>
             </h1>
 
-            <p className='text-white bg-green-500 p-5 rounded-lg text-lg opacity-70 hover:opacity-95 duration-1000 cursor-mouse leading-relaxed  max-w-md mb-8'>
-              SOLO membantu anak-anak dan masyarakat belajar memilah sampah
-
-              dengan cara yang seru, interaktif, dan modern menggunakan teknologi AI.
-            </p>
+           
 
             <div className='flex gap-4 justify-center md:justify-start'>
               <Link to={"/klasifikasi-event"}>
@@ -128,18 +126,18 @@ const HomePage = () => {
           {/* HERO IMAGE */}
 
         </div>
-      </div>//
+      </div>
 
 
       {/* ================= KATEGORI SECTION ================= */}
-      <div className="kategori py-16 bg-gradient-to-b from-transparent to-blue-50 relative">
+      <div className="kategori md:py-20 sm:mt-10 mt-32 mt-96 bg-gradient-to-b from-transparent to-blue-50 relative">
         <div className="container mx-auto px-4 reveal">
           <h2 className='text-center bg-green-500 bg-clip-text pb-5 text-transparent md:text-5xl text-3xl mb-16'>
             Pelajari Jenis Sampah
           </h2>
 
           {/* GRID UTAMA KATEGORI */}
-          <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 md:gap-8 max-w-6xl mx-auto '>
+          <div className='grid xl:grid-cols-3 md:grid-cols-2   grid-cols-1 gap-6 md:gap-8 max-w-6xl mx-auto '>
             {dataKategori.map((kat) => (
               <div
                 key={kat.id}
@@ -216,7 +214,7 @@ const HomePage = () => {
             </div>
           </div>
         )}
-      </div>//
+      </div>
 
       {/* ================= APLIKASI SECTION ================= */}
 

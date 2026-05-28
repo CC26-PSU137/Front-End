@@ -150,7 +150,7 @@ const Navbar = () => {
               onClick={handleClick}
             >
 
-              <button className="bg-gradient-to-r from-pink-400 to-indigo-400 w-14 h-14 rounded-full shadow-xl flex items-center justify-center active:scale-95 transition-all">
+              <button className="bg-green-600 cursor-pointer w-14 h-14 rounded-full shadow-xl flex items-center justify-center active:scale-95 transition-all">
 
                 <i
                   className={`text-white text-3xl ${menuActive
