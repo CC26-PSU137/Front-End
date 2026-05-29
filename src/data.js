@@ -74,7 +74,7 @@ export const timDeveloper = [
     id: 2,
     foto: Image.ajarUnad,
     nama: "M. Ajar Danu Wiratama",
-    role: "Back End",
+    role: "Back End Web Developer",
   },
   {
     id: 3,
@@ -92,7 +92,7 @@ export const timDeveloper = [
     id: 3,
     foto: Image.mar,
     nama: "Amar Triadi",
-    role: "Front end",
+    role: "Front End Web Developer",
   },
 ];
 

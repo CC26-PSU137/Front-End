@@ -96,7 +96,7 @@ const HomePage = () => {
         </div>
       )}
       {/* BACKGROUND ORNAMENT (Top & Bottom Wave Styles) */}
-      <div className="absolute z-0 inset-0  bg-[url('assets/bgEarth3.jpeg')] bg-cover h-screen top-0 left-0 right-0 h-16 bg-gradient-to-b from-blue-100 to-transparent opacity-60 pointer-events-none"></div>
+      <div className="absolute z-0 inset-0  bg-[url('/bgEarth3.jpeg')] bg-cover h-screen top-0 left-0 right-0 h-16 bg-gradient-to-b from-blue-100 to-transparent opacity-60 pointer-events-none"></div>
 
       {/* ================= HERO SECTION ================= */}
 
@@ -328,7 +328,7 @@ const HomePage = () => {
 
           <div className='flex flex-wrap gap-10 items-center justify-around md:justify-around'>
             {timDeveloper.map((dev) => (
-              <div key={dev.id} className='bg-white rounded-2xl border border-blue-50 shadow-sm p-6 text-center bg-radial-dots'>
+              <div key={dev.id} className='bg-white rounded-2xl border border-blue-50 shadow-sm p-8 text-center bg-radial-dots'>
                 <div className='w-28 h-28 rounded-full border-4 border-green-500 p-1 mx-auto mb-4 overflow-hidden'>
                   <img src={dev.foto} alt={dev.nama} className='w-full h-full object-cover rounded-full' />
                 </div>
