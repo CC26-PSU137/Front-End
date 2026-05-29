@@ -14,83 +14,75 @@ import { NavLink, useNavigate } from "react-router-dom";
 export default function Loginpage() {
     const [showPassword, setShowPassword] = useState(false);
 
+const [form, setForm] = useState({
+    email: "",
+    password: "",
+});
 
-    const [form, setForm] = useState({
-        email: "",
-        password: "",
+const navigate = useNavigate();
+
+const handleChange = (e) => {
+    setForm({
+        ...form,
+        [e.target.name]: e.target.value,
     });
+};
 
-    const navigate = useNavigate();
+const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+    try {
 
+        const response = await fetch(
+            "https://backend-solo-cc26-psu137-production.up.railway.app/api/auth/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: form.email,
+                    password: form.password,
+                }),
+            }
+        );
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+        const result = await response.json();
 
-        try {
+        console.log(result);
 
-            const response = await fetch(
-                "https://backend-solo-cc26-psu137-production.up.railway.app/api/auth/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: form.email,
-                        password: form.password,
-                    }),
-                }
+        if (result.status === "success") {
+
+            // SIMPAN TOKEN
+            localStorage.setItem(
+                "token",
+                result.data.token
             );
 
-            const result = await response.json();
+            // SIMPAN USER LOGIN
+            localStorage.setItem(
+                "currentUser",
+                JSON.stringify({
+                    email: form.email,
+                })
+            );
 
-            console.log(result);
+            navigate("/homepage");
 
-            if (result.status === "success") {
+        } else {
 
-                localStorage.setItem(
-                    "token",
-                    result.data.token
-                );
+            alert(result.message);
 
-                const users = JSON.parse(
-                    localStorage.getItem("users")
-                ) || [];
-
-                const user = users.find(
-                    (u) => u.email === form.email
-                );
-
-                if (!user) {
-                    alert("User tidak ditemukan");
-                    return;
-                }
-
-                localStorage.setItem(
-                    "currentUser",
-                    JSON.stringify(user)
-                );
-                navigate("/homepage");
-            } else {
-                alert(result.message);
-            }
-
-        } catch (error) {
-
-            console.log(error);
-
-            alert("Terjadi kesalahan");
         }
-    };
 
+    } catch (error) {
 
+        console.log(error);
+
+        alert("Terjadi kesalahan");
+
+    }
+};
 
 
 

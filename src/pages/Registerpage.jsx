@@ -13,129 +13,101 @@ import { Image } from "../data";
 import { NavLink } from "react-router-dom";
 
 export default function RegisterPage() {
-    const [form, setForm] = useState({
-        nama: "",
-        email: "",
-        password: "",
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+});
+
+const [popup, setPopup] = useState({
+    show: false,
+    type: "",
+    message: "",
+});
+
+const navigate = useNavigate();
+
+const handleChange = (e) => {
+    setForm({
+        ...form,
+        [e.target.name]: e.target.value,
     });
+};
 
-    const navigate = useNavigate();
+const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const [popup, setPopup] = useState({
-        show: false,
-        type: "",
-        message: "",
-    });
+    try {
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const users = JSON.parse(
-            localStorage.getItem("users")
-        ) || [];
-
-        // CEK EMAIL DUPLIKAT
-        const emailSudahAda = users.find(
-            (user) =>
-                user.email.toLowerCase() ===
-                form.email.toLowerCase()
+        const response = await fetch(
+            "https://backend-solo-cc26-psu137-production.up.railway.app/api/auth/register",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: form.email,
+                    password: form.password,
+                }),
+            }
         );
 
-        if (emailSudahAda) {
+        const result = await response.json();
+
+        console.log(result);
+
+        if (result.status === "success") {
 
             setPopup({
                 show: true,
-                type: "error",
-                message: "Upss Email ini sudah dipakai!",
+                type: "success",
+                message: "Yey! Akun berhasil dibuat 🎉",
             });
 
             setTimeout(() => {
+
                 setPopup({
                     show: false,
                     type: "",
                     message: "",
                 });
+
+                navigate("/login");
+
             }, 2500);
 
-            return;
-        }
-
-        try {
-
-            const response = await fetch(
-                "https://backend-solo-cc26-psu137-production.up.railway.app/api/auth/register",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: form.email,
-                        password: form.password,
-                    }),
-                }
-            );
-
-            const result = await response.json();
-
-            console.log(result);
-
-            // BACKEND ERROR
-            if (result.status === "failed") {
-
-                setPopup({
-                    show: true,
-                    type: "error",
-                    message: "Yahh 😢 Server SOLO lagi tidur",
-                });
-
-                return;
-            }
-
-            // SUCCESS
-            if (result.status === "success") {
-
-                const userBaru = {
-                    nama: form.nama,
-                    email: form.email,
-                };
-
-                users.push(userBaru);
-
-                localStorage.setItem(
-                    "users",
-                    JSON.stringify(users)
-                );
-
-                setPopup({
-                    show: true,
-                    type: "success",
-                    message: "Yey! Akun berhasil dibuat 🎉",
-                });
-
-                setTimeout(() => {
-                    navigate("/login");
-                }, 2000);
-            }
-
-        } catch (error) {
-
-            console.log(error);
+        } else {
 
             setPopup({
                 show: true,
                 type: "error",
-                message: "Server SOLO lagi capek",
+                message: result.message,
             });
+
+            setTimeout(() => {
+
+                setPopup({
+                    show: false,
+                    type: "",
+                    message: "",
+                });
+
+            }, 2500);
+
         }
-    };
+
+    } catch (error) {
+
+        console.log(error);
+
+        setPopup({
+            show: true,
+            type: "error",
+            message: "Server SOLO lagi capek",
+        });
+
+    }
+};
 
     return (
         <div className="min-h-screen bg-white flex items-center justify-center p-5 overflow-hidden relative">

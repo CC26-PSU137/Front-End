@@ -1,75 +1,87 @@
 import { Image, SekilasAcara, timDeveloper, dataKategori } from '../data';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const HomePage = () => {
-  const [selectedApp, setSelectedApp] = useState(null);
-  const [selectedKategori, setSelectedKategori] = useState(null);
+ const [selectedApp, setSelectedApp] = useState(null);
+const [selectedKategori, setSelectedKategori] = useState(null);
 
-  const [showWelcome, setShowWelcome] = useState(false);
+const [showWelcome, setShowWelcome] = useState(false);
 
-  const user = JSON.parse(
-    localStorage.getItem("currentUser")
-  );
+const navigate = useNavigate();
 
-  useEffect(() => {
+// USER LOGIN
+const user = JSON.parse(
+    localStorage.getItem("currentUser") || "null"
+);
+
+useEffect(() => {
+
+    // JIKA BELUM LOGIN
+    if (!user) {
+        navigate("/login");
+        return;
+    }
 
     const sudahMuncul = sessionStorage.getItem(
-      "welcomeShown"
+        "welcomeShown"
     );
 
     if (!sudahMuncul) {
 
-      setShowWelcome(true);
+        setShowWelcome(true);
 
-      sessionStorage.setItem(
-        "welcomeShown",
-        "true"
-      );
+        sessionStorage.setItem(
+            "welcomeShown",
+            "true"
+        );
 
-      setTimeout(() => {
-        setShowWelcome(false);
-      }, 5000);
+        setTimeout(() => {
+            setShowWelcome(false);
+        }, 5000);
     }
 
-  }, []);
+}, [user, navigate]);
 
-  useEffect(() => {
+useEffect(() => {
 
     const reveals = document.querySelectorAll(".reveal");
 
     const revealOnScroll = () => {
 
-      reveals.forEach((element) => {
+        reveals.forEach((element) => {
 
-        const windowHeight = window.innerHeight;
+            const windowHeight = window.innerHeight;
 
-        const elementTop =
-          element.getBoundingClientRect().top;
+            const elementTop =
+                element.getBoundingClientRect().top;
 
-        const revealPoint = 120;
+            const revealPoint = 120;
 
-        if (elementTop < windowHeight - revealPoint) {
-          element.classList.add("active");
-        }
-      });
+            if (elementTop < windowHeight - revealPoint) {
+                element.classList.add("active");
+            }
+
+        });
+
     };
 
     window.addEventListener(
-      "scroll",
-      revealOnScroll
+        "scroll",
+        revealOnScroll
     );
 
     revealOnScroll();
 
     return () =>
-      window.removeEventListener(
-        "scroll",
-        revealOnScroll
-      );
+        window.removeEventListener(
+            "scroll",
+            revealOnScroll
+        );
 
-  }, []);
+}, []);
 
 
   return (
@@ -85,7 +97,7 @@ const HomePage = () => {
             </div>
 
             <h1 className="text-2xl sm:text-4xl font-black text-indigo-700 mb-3 break-words">
-              Halo, {user?.nama}!
+              Hallo Kids!
             </h1>
 
             <p className="text-gray-600 text-sm sm:text-lg">
