@@ -37,7 +37,7 @@ const ProfilePage = () => {
 
                         {/* FOTO */}
                         <div className="w-36 h-36 rounded-full bg-gradient-to-r from-green-400 to-green-500 flex items-center justify-center text-white text-6xl font-black shadow-xl">
-                            {user?.nama?.charAt(0).toUpperCase()}
+                            {user?.email?.charAt(0).toUpperCase()}
                         </div>
 
                         {/* INFO */}
