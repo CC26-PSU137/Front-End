@@ -122,7 +122,7 @@ const handleSubmit = async (e) => {
                     </div>
 
                     <h1 className="text-4xl font-extrabold text-green-700">
-                        Join SOLO Kids!
+                       Yuk Join SOLO!
                     </h1>
 
                     <p className="text-green-600 mt-2 text-sm">
@@ -221,13 +221,6 @@ const handleSubmit = async (e) => {
                                 : "bg-red-500"
                             }`}
                     >
-
-                        {popup.type === "success" ? (
-                            <i className="ri-checkbox-circle-fill text-3xl"></i>
-                        ) : (
-                            <i className="ri-close-circle-fill text-3xl"></i>
-                        )}
-
                         <p>{popup.message}</p>
 
                     </div>
