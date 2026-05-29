@@ -121,7 +121,7 @@ const Klasifikasikan = () => {
   <div className="relative z-10 flex flex-col items-center">
 
     {/* CARD */}
-    <div className="relative bg-white shadow-2xl rounded-[35px] p-5 sm:p-8 w-full max-w-md mt-10 sm:mt-16 md:mt-24 border-[6px] border-white">
+    <div className="relative bg-white shadow-2xl mt-36 rounded-[35px] p-5 sm:p-8 w-full max-w-md mt-10 sm:mt-24 md:mt-24 border-[6px] border-white">
 
       {/* ICON */}
       <div className="flex justify-center mb-5">

@@ -124,7 +124,7 @@ const Navbar = () => {
                   }`
                 }
               >
-                <i class="ri-game-2-line"></i> KUIS
+                <i class="ri-game-2-line"></i> Quiz
               </NavLink>
 
 

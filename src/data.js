@@ -75,6 +75,7 @@ export const timDeveloper = [
     foto: Image.ajarUnad,
     nama: "M. Ajar Danu Wiratama",
     role: "Back End Web Developer",
+    posisi: "order-1 "
   },
   {
     id: 3,
