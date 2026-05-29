@@ -12,6 +12,11 @@ import organik from "/assets/organik.jpg";
 import anorganik from "/assets/anorganik.jpg"
 import quiz from "/assets/quiz.png"
 import klasifikasi from "/assets/klasifikasi.png"
+import mar from "/assets/mar.jpeg"
+import ngali from "/assets/ngali.jpeg"
+import rapli from "/assets/rapli.jpeg"
+import thiif from "/assets/thiif.jpeg"
+import ajarUnad from "/assets/ajarUnad.jpeg"
 
 export const Image = {
   Pembicara2,
@@ -28,6 +33,11 @@ export const Image = {
   anorganik,
   quiz,
   klasifikasi,
+  mar,
+  ngali,
+  rapli,
+  ajarUnad,
+  thiif
 };
 
 export const SekilasAcara = [
@@ -56,31 +66,31 @@ export const SekilasAcara = [
 export const timDeveloper = [
   {
     id: 1,
-    foto: Image.Pembicara2,
+    foto: Image.ngali,
     nama: "M. Almustofa khanafi",
     role: "Data science",
   },
   {
     id: 2,
-    foto: Image.Pembicara2,
+    foto: Image.ajarUnad,
     nama: "M. Ajar Danu Wiratama",
     role: "Back End",
   },
   {
     id: 3,
-    foto: Image.Pembicara2,
-    nama: "M. Athif Nur Abdilah",
-    role: "Data Scient",
+    foto: Image.thiif,
+    nama: "Athif Nur Abdilah",
+    role: "Data Science",
   },
   {
     id: 3,
-    foto: Image.Pembicara2,
+    foto: Image.rapli,
     nama: "M. Ravlyansyah",
     role: "Ai Engineer",
   },
   {
     id: 3,
-    foto: Image.Pembicara2,
+    foto: Image.mar,
     nama: "Amar Triadi",
     role: "Front end",
   },

@@ -112,7 +112,7 @@ const HomePage = () => {
               </span>
             </h1>
 
-           
+
 
             <div className='flex gap-4 justify-center md:justify-start'>
               <Link to={"/klasifikasi-event"}>
@@ -130,7 +130,7 @@ const HomePage = () => {
 
 
       {/* ================= KATEGORI SECTION ================= */}
-      <div className="kategori md:py-20 sm:mt-10 mt-32 mt-96 bg-gradient-to-b from-transparent to-blue-50 relative">
+      <div className="kategori md:py-20 md:mt-40 mt-[500px] py-20 bg-gradient-to-b from-transparent to-blue-50 relative">
         <div className="container mx-auto px-4 reveal">
           <h2 className='text-center bg-green-500 bg-clip-text pb-5 text-transparent md:text-5xl text-3xl mb-16'>
             Pelajari Jenis Sampah
@@ -150,7 +150,7 @@ const HomePage = () => {
                   </div>
 
                   {/* JUDUL */}
-                  <h3 className='text-2xl text-green-500  mb-3'>{kat.judul}</h3>
+                  <h3 className='text-green-500 text-center py-3 font-bold text-lg mb-1 line-clamp-1'>{kat.judul}</h3>
 
                   {/* RINGKASAN TEKS */}
                   <p className='text-md text-gray-500 leading-relaxed mb-6'>
@@ -326,14 +326,14 @@ const HomePage = () => {
 
           {/* Profiles Grid */}
 
-          <div className='flex flex-wrap gap-11 items-center justify-around md:justify-around'>
+          <div className='flex flex-wrap gap-10 items-center justify-around md:justify-around'>
             {timDeveloper.map((dev) => (
               <div key={dev.id} className='bg-white rounded-2xl border border-blue-50 shadow-sm p-6 text-center bg-radial-dots'>
-                <div className='w-28 h-28 rounded-full border-4 border-amber-400 p-1 mx-auto mb-4 overflow-hidden'>
+                <div className='w-28 h-28 rounded-full border-4 border-green-500 p-1 mx-auto mb-4 overflow-hidden'>
                   <img src={dev.foto} alt={dev.nama} className='w-full h-full object-cover rounded-full' />
                 </div>
                 <h4 className='text-xl font-black text-blue-500 mb-1'>{dev.nama}</h4>
-                <p className='text-xs text-gray-400 font-medium'>{dev.role}</p>
+                <p className='text-xs text-gray-500 font-medium'>{dev.role}</p>
               </div>
             ))}
 
