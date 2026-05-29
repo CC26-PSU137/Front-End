@@ -51,9 +51,9 @@ const ProfilePage = () => {
                                 {user?.email}
                             </p>
 
-                            <div className="mt-5 flex gap-4 flex-wrap">
+                            <div className="flex flex-col md:flex-row gap-4 md:mt-2 mt-4">
 
-                                <div className="bg-pink-100 px-5 py-3 rounded-2xl">
+                                <div className="bg-pink-100 px-5 py-3 rounded-2xl flex-1">
                                     <p className="text-sm text-gray-500">
                                         Total Klasifikasi
                                     </p>
@@ -63,7 +63,7 @@ const ProfilePage = () => {
                                     </h2>
                                 </div>
 
-                                <div className="bg-green-100 px-5 py-3 rounded-2xl">
+                                <div className="bg-green-100 px-5 py-3 rounded-2xl ">
                                     <p className="text-sm text-gray-500">
                                         Status
                                     </p>
@@ -71,7 +71,6 @@ const ProfilePage = () => {
                                     <h2 className="text-lg font-black text-green-500">
                                         SOLO Member
                                     </h2>
-
                                 </div>
 
                             </div>
@@ -82,7 +81,7 @@ const ProfilePage = () => {
                     {/* BUTTON */}
                     <button
                         onClick={logoutHandle}
-                        className="mt-8 bg-red-400 hover:bg-red-500 cursor-pointer text-white px-6 py-3 rounded-2xl font-bold transition-all"
+                        className="mt-8 bg-red-400 hover:bg-red-500 cursor-pointer text-white w-full md:w-auto px-4 md:px-6 py-3 rounded-2xl font-bold transition-all text-sm md:text-base"
                     >
                         Logout
                     </button>

@@ -130,7 +130,7 @@ const HomePage = () => {
 
 
       {/* ================= KATEGORI SECTION ================= */}
-      <div className="kategori md:py-20 md:mt-40 mt-[500px] py-20 bg-gradient-to-b from-transparent to-blue-50 relative">
+      <div className="kategori md:py-20 md:mt-40 mt-[200px] py-20 bg-gradient-to-b from-transparent to-blue-50 relative">
         <div className="container mx-auto px-4 reveal">
           <h2 className='text-center bg-green-500 bg-clip-text pb-5 text-transparent md:text-5xl text-3xl mb-16'>
             Pelajari Jenis Sampah
@@ -328,7 +328,7 @@ const HomePage = () => {
 
           <div className='flex flex-wrap gap-10 items-center justify-around md:justify-around'>
             {timDeveloper.map((dev) => (
-              <div key={dev.id} className='bg-white rounded-2xl border border-blue-50 shadow-sm p-8 text-center bg-radial-dots'>
+              <div key={dev.id} className='bg-white w-60 h-full rounded-2xl border border-blue-50 shadow-sm p-3 text-center bg-radial-dots'>
                 <div className='w-28 h-28 rounded-full border-4 border-green-500 p-1 mx-auto mb-4 overflow-hidden'>
                   <img src={dev.foto} alt={dev.nama} className='w-full h-full object-cover rounded-full' />
                 </div>
