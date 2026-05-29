@@ -142,14 +142,14 @@ useEffect(() => {
 
 
       {/* ================= KATEGORI SECTION ================= */}
-      <div className="kategori md:py-20 md:mt-42 mt-96  py-20 bg-gradient-to-b from-transparent to-green-50 relative">
+      <div className="kategori md:py-20 md:mt-42 mt-96 py-20 bg-gradient-to-b from-transparent to-green-50 relative">
         <div className="container mx-auto px-4 reveal">
           <h2 className='text-center bg-green-500 bg-clip-text pb-5 text-transparent md:text-5xl text-3xl mb-16'>
             Pelajari Jenis Sampah
           </h2>
 
           {/* GRID UTAMA KATEGORI */}
-          <div className='grid xl:grid-cols-3 md:grid-cols-2   grid-cols-1 gap-6 md:gap-8 max-w-6xl mx-auto '>
+          <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 md:gap-8 max-w-6xl mx-auto '>
             {dataKategori.map((kat) => (
               <div
                 key={kat.id}
