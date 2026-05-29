@@ -53,12 +53,12 @@ const ProfilePage = () => {
 
                             <div className="flex flex-col md:flex-row gap-4 md:mt-2 mt-4">
 
-                                <div className="bg-pink-100 px-5 py-3 rounded-2xl flex-1">
+                                <div className="bg-blue-100 px-5 py-3 rounded-2xl flex-1">
                                     <p className="text-sm text-gray-500">
                                         Total Klasifikasi
                                     </p>
 
-                                    <h2 className="text-2xl text-center font-black text-pink-500">
+                                    <h2 className="text-2xl text-center font-black text-blue-500">
                                         {history.length}
                                     </h2>
                                 </div>
