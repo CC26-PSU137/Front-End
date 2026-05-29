@@ -130,7 +130,7 @@ const HomePage = () => {
 
 
       {/* ================= KATEGORI SECTION ================= */}
-      <div className="kategori md:py-20 md:mt-0 mt-44  py-20 bg-gradient-to-b from-transparent to-green-50 relative">
+      <div className="kategori md:py-20 md:mt-42 mt-96  py-20 bg-gradient-to-b from-transparent to-green-50 relative">
         <div className="container mx-auto px-4 reveal">
           <h2 className='text-center bg-green-500 bg-clip-text pb-5 text-transparent md:text-5xl text-3xl mb-16'>
             Pelajari Jenis Sampah
