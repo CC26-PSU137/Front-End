@@ -1,10 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Image } from "../data";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ProfilePage = () => {
-    const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+   const [history, setHistory] = useState([]);
+   const [loadingHistory, setLoadingHistory] = useState(true);
 
     const navigate = useNavigate();
 
@@ -12,11 +12,50 @@ const ProfilePage = () => {
         localStorage.getItem("currentUser")
     );
 
-    const history = JSON.parse(
-        localStorage.getItem(
-            `history-${user?.email}`
-        )
-    ) || [];
+  const getHistory = async () => {
+
+    try {
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            setLoadingHistory(false);
+            return;
+        }
+
+        const response = await fetch(
+            "https://backend-solo-cc26-psu137-production.up.railway.app/api/classification/history",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        const result = await response.json();
+
+        console.log("Item pertama:", result.data[0]);
+
+        if (result.status === "success") {
+            setHistory(result.data || []);
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+    } finally {
+
+        setLoadingHistory(false);
+
+    }
+};
+
+useEffect(() => {
+    getHistory();
+}, []);
+
+ 
 
  const logoutHandle = () => {
 
@@ -104,44 +143,58 @@ const cancelLogout = () => {
                         Riwayat Klasifikasi  <i class="ri-recycle-fill"></i>
                     </h1>
 
-                    {history.length > 0 ? (
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {loadingHistory ? (
 
-                            {history.map((item) => (
+    <div className="text-center py-10 text-gray-400">
+        Memuat riwayat...
+    </div>
 
-                                <div
-                                    key={item.id}
-                                    className="bg-green-50 rounded-3xl p-4 shadow-lg"
-                                >
+) : history.length > 0 ? (
 
-                                    <img
-                                        src={item.gambar}
-                                        alt=""
-                                        className="w-full h-52 object-cover rounded-2xl"
-                                    />
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                                    <h2 className="text-2xl font-black text-green-500 mt-4">
-                                        {item.jenis}
-                                    </h2>
+        {history.map((item) => (
 
-                                    <p className="text-gray-500 mt-2">
-                                        {item.tanggal}
-                                    </p>
+            <div
+    key={item.id}
+    className="bg-green-50 rounded-3xl p-4 shadow-lg"
+>
 
-                                </div>
-                            ))}
-                        </div>
+    <img
+        src={item.imageUrl}
+        alt={item.prediction}
+        className="w-full h-52 object-cover rounded-2xl"
+    />
 
-                    ) : (
+    <h2 className="text-2xl font-black text-green-500 mt-4">
+        {item.prediction}
+    </h2>
 
-                        <div className="text-center py-10 text-gray-400">
-                            Belum ada history klasifikasi
-                        </div>
-                    )}
+    <p className="text-gray-500 mt-2">
+        {item.description}
+    </p>
+
+    <p className="text-sm text-gray-400 mt-3">
+        {new Date(item.createdAt).toLocaleDateString("id-ID")}
+    </p>
+
+</div>
+
+        ))}
+
+    </div>
+
+) : (
+
+    <div className="text-center py-10 text-gray-400">
+        Belum ada history klasifikasi
+    </div>
+
+)}
                 </div>
             </div>
-            {
-    showLogoutPopup && (
+            
+            {showLogoutPopup && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
 
             <div className="bg-white rounded-[30px] p-6 md:p-8 shadow-2xl w-full max-w-md text-center animate-popup-smooth">

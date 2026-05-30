@@ -202,7 +202,7 @@ const Klasifikasikan = () => {
 
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-green-200 animate-ping absolute"></div>
 
-              <div className="relative bg-green-500 w-20 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-xl">
+              <div className="relative bg-green-500 w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-xl">
                 <i className="ri-ai-generate text-white text-5xl sm:text-6xl animate-bounce"></i>
               </div>
 
