@@ -12,6 +12,7 @@ import MainLayout from "./layout/MainLayout"
 import { Navigate } from "react-router-dom"
 import ProfilePage from "./pages/Profilepage"
 import ProtectedRoute from "./components/ProtectedRoute"
+import PublicRoute from "./components/PublicRoute"
 
 function App() {
 
@@ -32,8 +33,23 @@ function App() {
             <Route path="/profile-event" element={<ProfilePage />}></Route>
           </Route>
 
-          <Route path="/login" element={<Loginpage />} />
-          <Route path="/register" element={<RegisterPage />} />
+         <Route
+          path="/login"
+           element={
+           <PublicRoute>
+            <Loginpage />
+            </PublicRoute>
+          }
+         />
+
+          <Route
+           path="/register"
+           element={
+           <PublicRoute>
+            <RegisterPage />
+             </PublicRoute>
+            }
+            />
 
         </Routes>
       </div>

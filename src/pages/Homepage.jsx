@@ -85,7 +85,7 @@ useEffect(() => {
 
 
   return (
-    <div className='homepage md:pt-20 pt-24 bg-white min-h-screen overflow-hidden font-sans relative'>
+      <div className='homepage pt-24 md:pt-20 bg-white min-h-screen font-sans relative'>
       {/* POPUP SAPAAN */}
       {showWelcome && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50 px-4 ">
@@ -108,52 +108,45 @@ useEffect(() => {
         </div>
       )}
       {/* BACKGROUND ORNAMENT (Top & Bottom Wave Styles) */}
-      <div className="absolute z-0 inset-0  bg-[url('/bgEarth3.jpeg')] bg-cover h-screen top-0 left-0 right-0 h-16 bg-gradient-to-b from-blue-100 to-transparent opacity-60 pointer-events-none"></div>
-
+      <div className="absolute top-0 left-0 w-full h-screen bg-[url('/bgEarth3.jpeg')] bg-cover bg-center opacity-60 pointer-events-none z-0"
+      />
       {/* ================= HERO SECTION ================= */}
 
-      <div className=" container mx-auto px-4 sm:px-6 py-20 sm:py-28 md:py-36 relative bg-no-repeat bg-contain bg-center">
-        <div className="hero grid md:grid-cols-2 grid-cols-1 items-center gap-8 reveal">
+    <div className="container mx-auto px-4 sm:px-6 relative min-h-[70vh] flex items-center">
+    <div className="hero w-full reveal">
 
-          {/* TEXT CONTENT */}
-          <div className='text-center md:text-left  pb-10 mt-1  z-10'>
-            <h1 className='font-heading xl:text-6xl lg:text-5xl text-4xl font-black text-green-500 mb-4 tracking-wide'>
-              Aplikasi Edukasi <br />
-              <span className="bg-green-500 bg-clip-text text-transparent ">
-                Interaktif
-              </span>
-            </h1>
+   <div className='text-center lg:text-left z-10 max-w-xl mx-auto lg:mx-0'>
+      <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-green-500 mb-4 tracking-wide">
+        Aplikasi Edukasi <br />
+        <span className="text-green-500">
+          Interaktif
+        </span>
+      </h1>
 
-
-
-            <div className='flex gap-4 justify-center md:justify-start'>
-              <Link to={"/klasifikasi-event"}>
-                <button className='bg-green-500 hover:bg-green-600 cursor-pointer duration-600 text-white px-8 py-3 rounded-full shadow-md transition-all duration-300 hover:scale-105 flex items-center gap-2'>
-                  <span>▶</span> Mainkan Sekarang
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          {/* HERO IMAGE */}
-
-        </div>
+      <div className="flex justify-center lg:justify-start">
+        <Link to="/klasifikasi-event">
+          <button className="bg-green-500 hover:bg-green-600 text-white px-6 sm:px-8 py-3 rounded-full shadow-md transition-all duration-300 hover:scale-105 cursor-pointer">
+            ▶ Mainkan Sekarang
+          </button>
+        </Link>
       </div>
+    </div>
 
-
+  </div>
+</div>
       {/* ================= KATEGORI SECTION ================= */}
-      <div className="kategori py-16 md:mt-0 mt-5 bg-gradient-to-b from-transparent to-green-50">
-        <div className="container mx-auto lg:mt-[70px] md:mt-[900px] mt-96 px-4 reveal">
+      <div className="kategori py-20 bg-gradient-to-b from-transparent to-green-50 relative z-10">
+      <div className="container mx-auto mt-52 lg:mt-60 px-4 reveal">
           <h2 className='text-center bg-green-500 bg-clip-text pb-5 text-transparent md:text-5xl text-3xl mb-16'>
             Pelajari Jenis Sampah
           </h2>
 
           {/* GRID UTAMA KATEGORI */}
-          <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 md:gap-8 max-w-6xl mx-auto '>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {dataKategori.map((kat) => (
               <div
                 key={kat.id}
-                className={`bg-white rounded-[30px] shadow-sm border p-8 text-center flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:scale-102 ${kat.warnaUtama}`}
+               className={`bg-white rounded-[30px] shadow-sm border p-6 md:p-8 text-center flex flex-col justify-between h-full transition-all duration-300 hover:shadow-xl hover:scale-105 ${kat.warnaUtama}`}
               >
                 <div>
                   {/* ICON / GAMBAR */}

@@ -58,23 +58,23 @@ const Navbar = () => {
             {/* MENU */}
             <div
               className={`
-                absolute md:static
-                left-1/2 md:left-0
-                -translate-x-1/2 md:-translate-x-0
-                w-[90%] md:w-auto
-                flex flex-col md:flex-row
+                absolute lg:static
+                left-1/2 lg:left-0
+                -translate-x-1/2 lg:-translate-x-0
+                w-[90%] lg:w-auto
+                flex flex-col lg:flex-row
                 items-center
-                gap-5 md:gap-3
-                bg-white md:bg-white/70
+                gap-5 lg:gap-3
+                bg-white lg:bg-white/70
                 backdrop-blur-lg
                 rounded-[30px]
-                md:rounded-full
-                shadow-2xl md:shadow-lg
-                px-8 py-8 md:py-3
+                lg:rounded-full
+                shadow-2xl lg:shadow-lg
+                px-8 py-8 lg:py-3
                 transition-all duration-500
                 ${menuActive
                   ? "top-24 opacity-100"
-                  : "-top-[500px] opacity-0 md:opacity-100"
+                  : "-top-[500px] opacity-0 lg:opacity-100"
                 }
               `}
             >
@@ -146,7 +146,7 @@ const Navbar = () => {
 
             {/* BUTTON MOBILE */}
             <div
-              className="md:hidden block"
+              className="lg:hidden block"
               onClick={handleClick}
             >
 
