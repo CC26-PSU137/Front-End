@@ -110,8 +110,23 @@ const handleSubmit = async (e) => {
 };
 
     return (
+        
         <div className="min-h-screen bg-white flex items-center justify-center p-5 overflow-hidden relative">
+                {popup.show && (
+                <div className="fixed top-0  z-50 ">
 
+                    <div
+                        className={`px-6 py-4 rounded-3xl shadow-2xl text-white font-bold text-lg flex items-center gap-3 transition-all duration-500
+                         ${popup.type === "success"
+                                ? "bg-green-500"
+                                : "bg-red-500"
+                            }`}
+                    >
+                        <p className="text-white">{popup.message}</p>
+
+                    </div>
+                </div>
+            )}
             {/* Card Register */}
             <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-[35px] w-full max-w-md p-8 border-2 border-green-300 relative z-10">
 
@@ -211,21 +226,7 @@ const handleSubmit = async (e) => {
                 </p>
             </div>
 
-            {popup.show && (
-                <div className="fixed top-0  z-50 ">
-
-                    <div
-                        className={`px-6 py-4 rounded-3xl shadow-2xl text-white font-bold text-lg flex items-center gap-3 transition-all duration-500
-                         ${popup.type === "success"
-                                ? "bg-green-500"
-                                : "bg-red-500"
-                            }`}
-                    >
-                        <p>{popup.message}</p>
-
-                    </div>
-                </div>
-            )}
+           
         </div>
     );
 }
