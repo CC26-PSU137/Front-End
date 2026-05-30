@@ -104,27 +104,23 @@ http://localhost:5173
 
 ### Landing Page
 
-Menampilkan informasi mengenai aplikasi SOLO dan edukasi pengelolaan sampah.
+Menampilkan informasi mengenai aplikasi SOLO, edukasi pengelolaan sampah, jenis-jenis sampah, manfaat daur ulang, serta pengenalan fitur aplikasi.
 
-### Login Page
+### Bank Sampah Page
 
-Halaman autentikasi pengguna menggunakan email dan password.
-
-### Register Page
-
-Halaman pendaftaran akun pengguna baru.
+Menampilkan daftar dan informasi beberapa bank sampah di Jakarta yang dapat membantu pengguna dalam pengelolaan dan penyaluran sampah yang dapat didaur ulang.
 
 ### Classification Page
 
-Halaman untuk mengunggah gambar sampah dan melihat hasil klasifikasi AI.
+Halaman untuk mengunggah gambar sampah dan mendapatkan hasil klasifikasi otomatis dari AI, termasuk kategori sampah dan informasi terkait.
 
-### History Page
+### Quiz Page
 
-Menampilkan riwayat klasifikasi sampah yang pernah dilakukan pengguna.
+Halaman kuis interaktif yang bertujuan meningkatkan pengetahuan pengguna mengenai pengelolaan sampah dan lingkungan.
 
 ### Profile Page
 
-Menampilkan informasi akun pengguna.
+Menampilkan informasi akun pengguna serta riwayat klasifikasi yang telah dilakukan.
 
 ---
 
