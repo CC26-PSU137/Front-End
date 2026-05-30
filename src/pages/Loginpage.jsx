@@ -126,9 +126,9 @@ const handleSubmit = async (e) => {
         
         <div className="min-h-screen flex items-center justify-center bg-white overflow-hidden relative p-4">
         {
-    popup.show && (
+         popup.show && (
         <div
-            className={`fixed top-5 right-5 z-50 px-6 py-4 rounded-2xl text-white shadow-xl
+            className={`fixed top-0 z-50 px-6 py-4 rounded-2xl text-white shadow-xl
             ${popup.type === "success"
                     ? "bg-green-500"
                     : "bg-red-500"
