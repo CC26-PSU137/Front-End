@@ -60,7 +60,7 @@ Frontend bertugas sebagai penghubung antara pengguna dengan Backend API dan AI S
 
 ## Live Website
 
-https://your-vercel-domain.vercel.app
+https://front-end-blue-tau.vercel.app
 
 ---
 
