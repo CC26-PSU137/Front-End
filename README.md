@@ -1,16 +1,184 @@
-# React + Vite
+# SOLO Frontend Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Deskripsi Singkat Proyek
 
-Currently, two official plugins are available:
+SOLO (Sortir & Olah Limbah Online) adalah aplikasi web edukasi berbasis AI yang membantu pengguna mengidentifikasi jenis sampah melalui gambar. Pengguna dapat melakukan registrasi akun, login, mengunggah gambar sampah, melihat hasil klasifikasi AI, serta mengakses riwayat klasifikasi yang pernah dilakukan.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Frontend ini dibangun menggunakan React dan Vite dengan antarmuka yang responsif serta terintegrasi dengan Backend API dan AI Classification Service.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Fitur Utama
 
-## Expanding the ESLint configuration
+* User Registration
+* User Login & Authentication
+* JWT Token Management
+* Upload Image Sampah
+* AI Waste Classification Result
+* Classification History
+* Responsive User Interface
+* Backend API Integration
+* AI Service Integration
+* Cloud Deployment Ready
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+### Frontend
+
+* JavaScript
+* React.js
+* Vite
+* Tailwind CSS
+* API Fetch
+* React Router DOM
+
+### Deployment
+
+* Vercel
+
+---
+
+## Arsitektur Sistem
+
+User
+   ↓
+Frontend Web (React + Vite)
+   ↓
+Backend API (Railway)
+   ↓
+NeonDB PostgreSQL
+   ↓
+Cloudinary Storage
+   ↓
+AI Classification Service
+
+Frontend bertugas sebagai penghubung antara pengguna dengan Backend API dan AI Service melalui REST API.
+
+---
+
+## Live Website
+
+https://your-vercel-domain.vercel.app
+
+---
+
+## Backend API
+
+https://backend-solo-cc26-psu137-production.up.railway.app
+
+---
+
+## AI Service
+
+https://solo-ai-service-production.up.railway.app
+
+---
+
+## Petunjuk Setup Project
+
+### 1. Clone Repository
+
+git clone https://github.com/USERNAME/REPOSITORY_NAME.git
+
+### 2. Masuk ke Folder Project
+
+cd Front-End
+
+### 3. Install Dependencies
+
+npm install
+
+### 4. Menjalankan Aplikasi
+
+npm run dev
+
+Aplikasi akan berjalan pada:
+
+http://localhost:5173
+
+---
+
+## Struktur Halaman
+
+### Landing Page
+
+Menampilkan informasi mengenai aplikasi SOLO dan edukasi pengelolaan sampah.
+
+### Login Page
+
+Halaman autentikasi pengguna menggunakan email dan password.
+
+### Register Page
+
+Halaman pendaftaran akun pengguna baru.
+
+### Classification Page
+
+Halaman untuk mengunggah gambar sampah dan melihat hasil klasifikasi AI.
+
+### History Page
+
+Menampilkan riwayat klasifikasi sampah yang pernah dilakukan pengguna.
+
+### Profile Page
+
+Menampilkan informasi akun pengguna.
+
+---
+
+## Integrasi API
+
+Frontend terhubung dengan Backend API menggunakan API Fetch untuk:
+
+* User Authentication
+* Upload Image
+* Classification Result
+* Fetch Classification History
+
+### Authentication Flow
+
+User Login
+   ↓
+Backend Generate JWT
+   ↓
+Frontend Save Token
+   ↓
+Token Dikirim Melalui Header Authorization
+   ↓
+Backend Verification
+   ↓
+Access Protected Page
+---
+
+## Deployment
+
+Aplikasi frontend dideploy menggunakan Vercel.
+
+---
+
+## Kontributor
+
+### Frontend Developer
+
+Amar Triadi
+
+### Backend Developer
+
+Muhammad Ajar Danu Wiratama
+
+### AI Engineer
+
+Muhammad Ravlyansyah
+
+### Data Science
+
+Muhammad Almustofa Khanafi
+Athif Nur Abdillah
+
+---
+
+## License
+
+This project is created for educational and capstone purposes.
