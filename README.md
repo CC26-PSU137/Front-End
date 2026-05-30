@@ -80,7 +80,7 @@ https://solo-ai-service-production.up.railway.app
 
 ### 1. Clone Repository
 
-git clone https://github.com/USERNAME/REPOSITORY_NAME.git
+git clone https://github.com/CC26-PSU137/Front-End.git
 
 ### 2. Masuk ke Folder Project
 
