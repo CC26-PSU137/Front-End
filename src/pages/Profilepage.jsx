@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Image } from "../data";
+import { useState } from "react";
 
 const ProfilePage = () => {
+    const [showLogoutPopup, setShowLogoutPopup] = useState(false);
 
     const navigate = useNavigate();
 
@@ -16,14 +18,22 @@ const ProfilePage = () => {
         )
     ) || [];
 
-    const logoutHandle = () => {
+ const logoutHandle = () => {
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("currentUser");
-        sessionStorage.removeItem("welcomeShown");
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("welcomeShown");
 
-        navigate("/login");
-    };
+    navigate("/login");
+};
+
+const confirmLogout = () => {
+    setShowLogoutPopup(true);
+};
+
+const cancelLogout = () => {
+    setShowLogoutPopup(false);
+};
 
     return (
         <div className="min-h-screen bg-white pt-40 p-5">
@@ -80,7 +90,7 @@ const ProfilePage = () => {
 
                     {/* BUTTON */}
                     <button
-                        onClick={logoutHandle}
+                        onClick={confirmLogout}
                         className="mt-8 bg-red-400 hover:bg-red-500 cursor-pointer text-white w-full md:w-auto px-4 md:px-6 py-3 rounded-2xl font-bold transition-all text-sm md:text-base"
                     >
                         Logout
@@ -130,6 +140,47 @@ const ProfilePage = () => {
                     )}
                 </div>
             </div>
+            {
+    showLogoutPopup && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
+
+            <div className="bg-white rounded-[30px] p-6 md:p-8 shadow-2xl w-full max-w-md text-center animate-popup-smooth">
+
+                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <i className="ri-logout-box-r-line text-4xl text-red-500"></i>
+                </div>
+
+                <h2 className="text-2xl font-black text-gray-800 mb-3">
+                    Yakin ingin logout?
+                </h2>
+
+                <p className="text-gray-500 mb-6">
+                    Kamu akan keluar dari akun SOLO.
+                </p>
+
+                <div className="flex gap-3">
+
+                    <button
+                        onClick={cancelLogout}
+                        className="flex-1 py-3 rounded-2xl bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold cursor-pointer transition-all"
+                    >
+                        Batal
+                    </button>
+
+                    <button
+                        onClick={logoutHandle}
+                        className="flex-1 py-3 rounded-2xl bg-red-500 hover:bg-red-600 text-white font-bold cursor-pointer transition-all"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    )
+}
         </div>
     );
 };
