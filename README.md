@@ -139,7 +139,7 @@ User Login
    ↓
 Backend Generate JWT
    ↓
-Frontend Save Token
+Frontend Save Token 
    ↓
 Token Dikirim Melalui Header Authorization
    ↓

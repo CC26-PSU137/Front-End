@@ -202,7 +202,7 @@ const Klasifikasikan = () => {
 
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-green-200 animate-ping absolute"></div>
 
-              <div className="relative bg-green-500 w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-xl">
+              <div className="relative bg-green-500 w-20 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shadow-xl">
                 <i className="ri-ai-generate text-white text-5xl sm:text-6xl animate-bounce"></i>
               </div>
 
@@ -241,17 +241,17 @@ const Klasifikasikan = () => {
 
       {/* POPUP */}
       {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 px-4">
-          <div className="bg-white p-5 sm:p-8 rounded-[35px] shadow-2xl w-full max-w-sm text-center">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 px-4 ">
+          <div className="bg-white p-3 sm:p-8 sm:pt-1  mt-28 rounded-[35px] shadow-2xl w-full max-w-sm text-center">
 
             {/* ICON */}
             <div className="flex justify-center mb-5">
-              <div className="bg-green-200 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center">
+              <div className="bg-green-200 w-16 h-16 sm:w-20 sm:h-20 mt-10 rounded-full flex items-center justify-center">
                 <i className="ri-checkbox-circle-fill text-5xl sm:text-6xl text-green-500"></i>
               </div>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-green-500 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-black text-green-500 mb-2">
               Horeee!
             </h2>
 
@@ -260,7 +260,7 @@ const Klasifikasikan = () => {
             </p>
 
             {/* RESULT */}
-            <div className="bg-green-500 rounded-2xl p-4 mt-6">
+            <div className="bg-green-500 rounded-2xl p-1.5 mt-6">
               <p className="text-base sm:text-lg font-bold text-white">
                 Jenis Sampah:
               </p>
@@ -268,12 +268,26 @@ const Klasifikasikan = () => {
               <h1 className="text-2xl sm:text-3xl font-black text-white mt-2 break-words">
                 {hasilAI?.prediction}
               </h1>
+
+                  {hasilAI?.description && (
+                  <div className="bg-gray-100 rounded-2xl p-4 mt-4 text-left">
+
+                    <h3 className="font-bold text-green-500 mb-2">
+                      Deskripsi
+                    </h3>
+
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {hasilAI.description}
+                    </p>
+
+                  </div>
+)}
             </div>
 
             {/* BUTTON */}
             <button
               onClick={() => setShowPopup(false)}
-              className="mt-8 bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-3 rounded-full w-full font-black text-base sm:text-lg shadow-lg transition-all duration-300"
+              className="mt-5 bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-3 rounded-full w-full font-black text-base sm:text-lg shadow-lg transition-all duration-300"
             >
               Tutup
             </button>
