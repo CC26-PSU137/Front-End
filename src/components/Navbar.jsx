@@ -108,7 +108,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `px-5 py-3 rounded-full font-bold transition-all duration-300 ${isActive
                     ? "bg-green-500 text-white shadow-lg"
-                    : "text-green-500 hover:bg-green-100"
+                    : "text-green-500 hover:bg-red-100"
                   }`
                 }
               >
@@ -132,12 +132,12 @@ const Navbar = () => {
                 to="profile-event"
                 className={({ isActive }) =>
                   `px-5 py-3 rounded-full font-bold transition-all duration-300 ${isActive
-                    ? "bg-green-500 text-white shadow-lg"
-                    : "text-green-500 hover:bg-green-100"
+                    ? "bg-red-700 text-white shadow-lg"
+                    : "text-red-700 hover:bg-red-100"
                   }`
                 }
               >
-                <i class="ri-account-circle-fill"></i> profile
+                <i class="ri-logout-box-line "></i> Logout
               </NavLink>
 
 
